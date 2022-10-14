@@ -11,13 +11,12 @@ const updateUI = () => {
 
 updateState = () => {
   chrome.runtime.sendMessage('get-destroymode', (response) => {
-    console.log('Received destroymode:', response.destroymode);
-    destroymode = response.destroymode;
+    destroymode = response?.destroymode ?? false;
     updateUI();
   });
 };
 
-function exec() {
+function toggleDestroyMode() {
   destroymode = !destroymode;
   updateUI();
   chrome.runtime.sendMessage({ myPopupIsOpen: true });
@@ -25,7 +24,15 @@ function exec() {
   if (destroymode) setTimeout(() => window.close(), 250);
 }
 
+function activateCleanUp() {
+  chrome.runtime.sendMessage({ clean: true });
+  setTimeout(() => window.close(), 150);
+}
+
 updateState();
 
 const toggle = document.querySelector('#toggle');
-toggle.addEventListener('click', exec);
+toggle.addEventListener('click', toggleDestroyMode);
+
+const cleanup = document.querySelector('#cleanup');
+cleanup.addEventListener('click', activateCleanUp);

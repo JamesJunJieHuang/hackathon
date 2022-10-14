@@ -39,17 +39,30 @@ body {
   width: 1.75rem;
 }
 
-#toggle {
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.metal-btn {
   all: unset;
   background-image: url('images/steel_btn.png');
   padding: 1rem;
   box-shadow: 4px 4px 4px #00000030;
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#toggle:active {
+.metal-btn:active {
   filter: brightness(0.8);
 }
 
-#toggle img {
+.metal-btn img {
   filter: drop-shadow(2px 2px 4px);
+  width: 4rem;
+  height: 4rem;
 }

@@ -22,7 +22,7 @@ chrome.runtime.onInstalled.addListener(function () {
     if (message.myPopupIsOpen) {
       destroymode = !destroymode;
       console.log('destroymode is now', destroymode);
-      // Do your stuff
+
       if (destroymode) {
         chrome.scripting.executeScript({
           target: { tabId: tab.id },
@@ -36,7 +36,7 @@ chrome.runtime.onInstalled.addListener(function () {
       }
     }
     if (message.clean) {
-      // Do your stuff
+      destroymode = false;
       chrome.scripting.executeScript({
         target: { tabId: tab.id },
         files: ['content2.js'],

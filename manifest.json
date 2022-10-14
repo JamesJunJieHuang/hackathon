@@ -3,7 +3,9 @@
   "name": "Destroyer Extension",
   "version": "0.0.1",
   "action": {
-    "default_icon": "hammer_icon.png"
+    "default_icon": "hammer_icon.png",
+    "default_title": "Click Me to DESTROY",
+    "default_popup": "hello.html"
   },
   "permissions": ["activeTab", "scripting"],
   "background": {

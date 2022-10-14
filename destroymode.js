@@ -1,16 +1,15 @@
-let destroymode = false;
+// let background = chrome.extension.getBackgroundPage();
+// let destroymode = background.destroymode;
 const hammerElement = document.querySelector('#toggle img');
 
 function exec() {
-  destroymode = !destroymode;
-  if (destroymode) {
-    console.log('destroymode ON');
-    hammerElement.style.opacity = 0;
-    chrome.runtime.sendMessage({ myPopupIsOpen: true });
-  } else {
-    hammerElement.style.opacity = 1;
-    console.log('destroymode OFF');
-  }
+  chrome.runtime.sendMessage({ myPopupIsOpen: true });
+
+  //   if (destroymode) {
+  //     hammerElement.style.opacity = 0;
+  //   } else {
+  //     hammerElement.style.opacity = 1;
+  //   }
   setTimeout(() => window.close(), 500);
 }
 

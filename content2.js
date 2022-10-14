@@ -1,0 +1,2 @@
+cleanUp();
+location.reload();

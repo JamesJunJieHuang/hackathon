@@ -1,16 +1,11 @@
-let destroymode = false;
+// destroymode = chrome.extension.getBackgroundPage().destroymode;
 
 function exec() {
-    destroymode = !destroymode;
-    if (destroymode) {
-        console.log('destroymode ON');
-        chrome.runtime.sendMessage({'myPopupIsOpen': true})
-    }
-    else console.log('destroymode OFF');
+    chrome.runtime.sendMessage({'myPopupIsOpen': true})
 }
 
-const toggle = document.querySelector('#toggle');
-toggle.addEventListener('click', exec)
+const destroytoggle = document.querySelector('#destroytoggle');
+destroytoggle.addEventListener('click', exec)
 
 
 

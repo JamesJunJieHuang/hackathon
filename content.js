@@ -121,6 +121,8 @@ const createParticle = (xPos, yPos) => {
 
 document.addEventListener('click', demolishOnClick);
 
+
+
 const cleanUp = () => {
   document.removeEventListener('click', demolishOnClick);
   customCursorStyleElement.remove();

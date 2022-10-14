@@ -71,8 +71,6 @@ var cleanUp;
     const xPos = event.clientX - rect.left;
     const yPos = event.clientY - rect.top;
 
-    console.log(xPos, yPos);
-
     const imgElement = document.createElement('img');
 
     const randomImage = Math.floor(Math.random() * 4) + 1;
@@ -80,21 +78,25 @@ var cleanUp;
       `./images/broken_glass_0${randomImage}.png`
     );
 
-    console.log(imgElement.src);
-    imgElement.style.width = '100px';
-    imgElement.style.height = '100px';
-    imgElement.style.position = 'absolute';
-
-    imgElement.style.top = `${yPos}px`;
-    imgElement.style.left = `${xPos}px`;
-    imgElement.style.zIndex = '1000';
-
     const randomRot = Math.floor(Math.random() * 360);
     const randomScale = 1 + Math.random() * 2;
 
-    imgElement.style.transform = `translate(-50%, -50%) rotate(${randomRot}deg) scale(${randomScale})`;
-
-    imgElement.style.pointerEvents = 'none';
+    imgElement.setAttribute(
+      'style',
+      `
+      unset: all;
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      top: ${yPos}px;
+      left: ${xPos}px;
+      z-index: 1000;
+      background-color: transparent;
+      border: 0px solid transparent !important;
+      transform: translate(-50%, -50%) rotate(${randomRot}deg) scale(${randomScale});
+      pointer-events: none;
+    `
+    );
 
     element.appendChild(imgElement);
     element.style.overflow = 'hidden';
@@ -148,6 +150,6 @@ var cleanUp;
   cleanUp = () => {
     document.removeEventListener('click', demolishOnClick);
     customCursorStyleElement.remove();
-    for (let audioElement in audioElements) audioElement.remove();
+    audioElements.forEach((el) => el.remove());
   };
 })();

@@ -53,6 +53,7 @@ var cleanUp;
     const randomX = Math.floor(Math.random() * 4) - 2;
     const randomY = Math.floor(Math.random() * 4) - 2;
     const randomRot = Math.floor(Math.random() * 4) - 2;
+    element.style.boxShadow = `rgba(149, 157, 165, 0.2) 0px 8px 24px`;
     element.style.transform = `translate(${randomX}px, ${randomY}px) rotate(${randomRot}deg)`;
   };
 

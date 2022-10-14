@@ -8,17 +8,20 @@ chrome.runtime.onInstalled.addListener(function () {
     return tab;
   }
 
-  chrome.runtime.onMessage.addListener(async function (message, sender) {
+  chrome.runtime.onMessage.addListener(async function (
+    message,
+    sender,
+    sendResponse
+  ) {
+    if (message === 'get-destroymode') {
+      sendResponse({ destroymode });
+    }
+
     const tab = await getCurrentTab();
 
     if (message.myPopupIsOpen) {
-      console.log(
-        'Received message from popup. Toggling destroymode from',
-        destroymode,
-        'to',
-        !destroymode
-      );
       destroymode = !destroymode;
+      console.log('destroymode is now', destroymode);
       // Do your stuff
       if (destroymode) {
         chrome.scripting.executeScript({

@@ -3,6 +3,26 @@ var cleanUp;
 (() => {
   const elementHits = {};
 
+  const createAudioElements = () => {
+    const elements = [];
+    for (let i = 1; i <= 8; i++) {
+      const src = chrome.runtime.getURL(`sounds/glass_0${i}.mp3`);
+      const element = document.createElement('audio');
+      element.src = src;
+      element.volume = 0.5;
+      document.body.appendChild(element);
+      elements.push(element);
+    }
+    return elements;
+  };
+
+  const audioElements = createAudioElements();
+
+  const playRandomSound = () => {
+    const randomIndex = Math.floor(Math.random() * audioElements.length);
+    audioElements[randomIndex].play();
+  };
+
   const customCursorStyleElement = document.createElement('style');
   customCursorStyleElement.innerHTML = `
 * {
@@ -45,6 +65,7 @@ var cleanUp;
   };
 
   const createBrokenGlassEffect = (event, element) => {
+    playRandomSound();
     const rect = element.getBoundingClientRect();
 
     const xPos = event.clientX - rect.left;
@@ -127,5 +148,6 @@ var cleanUp;
   cleanUp = () => {
     document.removeEventListener('click', demolishOnClick);
     customCursorStyleElement.remove();
+    for (let audioElement in audioElements) audioElement.remove();
   };
 })();

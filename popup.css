@@ -1,0 +1,51 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 16rem;
+  height: 16rem;
+  background-image: url('images/steel_bg.png');
+  background-repeat: no-repeat;
+  border: red 3px solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.construction-banner {
+  background-image: url('images/const_banner.png');
+  height: 2.5rem;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: space-around;
+  gap: 6rem;
+}
+
+.banner-top {
+  align-items: flex-start;
+}
+
+.banner-bottom {
+  align-items: flex-end;
+}
+
+.construction-light {
+  width: 1.75rem;
+}
+
+#toggle {
+  all: unset;
+  background-image: url('images/steel_btn.png');
+  padding: 1rem;
+  box-shadow: 4px 4px 4px #00000030;
+}
+
+#toggle img {
+  filter: drop-shadow(2px 2px 4px);
+}

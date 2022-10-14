@@ -3,8 +3,10 @@
   "name": "Destroyer Extension",
   "version": "0.0.1",
   "action": {
-    "default_popup": "hello.html",
     "default_icon": "hammer_icon.png"
   },
-  "permissions": ["activeTab"]
+  "permissions": ["activeTab", "scripting"],
+  "background": {
+    "service_worker": "background.js"
+  }
 }

@@ -2,6 +2,7 @@ const elementHits = {};
 
 const func = (event) => {
   console.log('Clicked', event.target);
+  event.preventDefault();
   const element = event.target;
   if (!element.id) {
     element.setAttribute('id', Math.random().toString());

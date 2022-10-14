@@ -46,6 +46,10 @@ body {
   box-shadow: 4px 4px 4px #00000030;
 }
 
+#toggle:active {
+  filter: brightness(0.8);
+}
+
 #toggle img {
   filter: drop-shadow(2px 2px 4px);
 }

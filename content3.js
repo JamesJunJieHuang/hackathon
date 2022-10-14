@@ -1,1 +1,1 @@
-cleanUp();
+cleanUp && cleanUp();

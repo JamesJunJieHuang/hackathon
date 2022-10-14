@@ -1,2 +1,2 @@
-cleanUp();
+cleanUp && cleanUp();
 location.reload();

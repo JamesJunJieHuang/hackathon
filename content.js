@@ -9,7 +9,7 @@ var cleanUp;
       const src = chrome.runtime.getURL(`sounds/glass_0${i}.mp3`);
       const element = document.createElement('audio');
       element.src = src;
-      element.volume = 0.5;
+      element.volume = 0.1;
       document.body.appendChild(element);
       elements.push(element);
     }
@@ -26,7 +26,9 @@ var cleanUp;
   const customCursorStyleElement = document.createElement('style');
   customCursorStyleElement.innerHTML = `
 * {
-    cursor: url('${chrome.runtime.getURL(`images/hammer_cursor.png`)}'), auto;
+    cursor: url('${chrome.runtime.getURL(
+      `images/hammer_cursor.png`
+    )}'), auto !important;
 }
 `;
   document.head.appendChild(customCursorStyleElement);
@@ -102,7 +104,7 @@ var cleanUp;
     element.appendChild(imgElement);
     element.style.overflow = 'hidden';
 
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 40; i++) {
       createParticle(event.clientX, event.clientY);
     }
   };
@@ -114,14 +116,18 @@ var cleanUp;
     particle.style.position = 'fixed';
     particle.style.pointerEvents = 'none';
     document.body.appendChild(particle);
-    const size = Math.floor(Math.random() * 7) + 1;
+    const size = Math.floor(Math.random() * 9) + 1;
     particle.style.width = `${size}px`;
     particle.style.height = `1px`;
+    particle.style.zIndex = '10000';
 
-    particle.style.backgroundColor = 'black';
+    particle.style.backgroundColor = `hsl(0, 0%, ${Math.floor(
+      Math.random() * 100
+    )}%)`;
+    Math.random() < 0.5 ? '#0f0f0f' : '#dbdbdb';
 
-    const destX = xPos + (Math.random() - 0.5) * 250;
-    const destY = yPos + (Math.random() - 0.5) * 250;
+    const destX = xPos + (Math.random() - 0.5) * 350;
+    const destY = yPos + (Math.random() - 0.5) * 350;
 
     const randomRot = Math.floor(Math.random() * 360);
 

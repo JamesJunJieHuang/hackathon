@@ -1,4 +1,4 @@
-chrome.tabs.onUpdated.addListener(function () {
+(() => {
   let destroymode = false;
 
   async function getCurrentTab() {
@@ -43,4 +43,4 @@ chrome.tabs.onUpdated.addListener(function () {
       });
     }
   });
-});
+})();

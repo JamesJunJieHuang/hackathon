@@ -1,4 +1,4 @@
-chrome.tabs.onUpdated.addListener(function () {
+chrome.runtime.onStartup.addListener(function () {
   let destroymode = false;
 
   async function getCurrentTab() {

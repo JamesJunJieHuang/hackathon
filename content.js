@@ -9,7 +9,7 @@ var cleanUp;
       const src = chrome.runtime.getURL(`sounds/glass_0${i}.mp3`);
       const element = document.createElement('audio');
       element.src = src;
-      element.volume = 0.5;
+      element.volume = 0.1;
       document.body.appendChild(element);
       elements.push(element);
     }

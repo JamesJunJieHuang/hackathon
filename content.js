@@ -24,13 +24,32 @@ var cleanUp;
   };
 
   const customCursorStyleElement = document.createElement('style');
-  customCursorStyleElement.innerHTML = `
-* {
+
+  const hammerDown = () => {
+    customCursorStyleElement.innerHTML = `*, *::before, *::after {
+    cursor: url('${chrome.runtime.getURL(
+      `images/hammer_cursor_hit.png`
+    )}'), auto !important;
+}`;
+  };
+
+  const hammerUp = () => {
+    customCursorStyleElement.innerHTML = `*, *::before, *::after {
     cursor: url('${chrome.runtime.getURL(
       `images/hammer_cursor.png`
     )}'), auto !important;
-}
-`;
+}`;
+  };
+
+  hammerUp();
+
+  const animateCursor = () => {
+    hammerDown();
+    setTimeout(hammerUp, 25);
+  };
+
+  document.addEventListener('mousedown', animateCursor);
+
   document.head.appendChild(customCursorStyleElement);
 
   const demolishOnClick = (event) => {
@@ -98,6 +117,7 @@ var cleanUp;
       border: 0px solid transparent !important;
       transform: translate(-50%, -50%) rotate(${randomRot}deg) scale(${randomScale});
       pointer-events: none;
+      filter: none !important;
     `
     );
 
@@ -156,6 +176,7 @@ var cleanUp;
 
   cleanUp = () => {
     document.removeEventListener('click', demolishOnClick);
+    document.removeEventListener('mousedown', animateCursor);
     customCursorStyleElement.remove();
     audioElements.forEach((el) => el.remove());
   };

@@ -29,7 +29,7 @@ var cleanUp;
     customCursorStyleElement.innerHTML = `*, *::before, *::after {
     cursor: url('${chrome.runtime.getURL(
       `images/hammer_cursor_hit.png`
-    )}'), auto !important;
+    )}') 9 58, auto !important;
 }`;
   };
 
@@ -37,7 +37,7 @@ var cleanUp;
     customCursorStyleElement.innerHTML = `*, *::before, *::after {
     cursor: url('${chrome.runtime.getURL(
       `images/hammer_cursor.png`
-    )}'), auto !important;
+    )}') 9 58, auto !important;
 }`;
   };
 

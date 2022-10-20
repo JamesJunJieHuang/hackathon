@@ -1,5 +1,5 @@
 (() => {
-  let destroymode = false;
+  let destructionMode = false;
 
   async function getCurrentTab() {
     let queryOptions = { active: true, lastFocusedWindow: true };
@@ -9,21 +9,20 @@
   }
 
   chrome.runtime.onMessage.addListener(async function (
-    message,
-    sender,
+    { message },
+    _sender,
     sendResponse
   ) {
-    if (message === 'get-destroymode') {
-      sendResponse({ destroymode });
+    if (message === 'getstate') {
+      sendResponse({ state: destructionMode });
     }
 
     const tab = await getCurrentTab();
 
-    if (message.myPopupIsOpen) {
-      destroymode = !destroymode;
-      console.log('destroymode is now', destroymode);
+    if (message === 'togglestate') {
+      destructionMode = !destructionMode;
 
-      if (destroymode) {
+      if (destructionMode) {
         chrome.scripting.executeScript({
           target: { tabId: tab.id },
           files: ['content.js'],
@@ -31,15 +30,21 @@
       } else {
         chrome.scripting.executeScript({
           target: { tabId: tab.id },
-          files: ['content3.js'],
+          func: () => {
+            try {
+              cleanUp && cleanUp();
+            } catch (error) {
+              console.log(error);
+            }
+          },
         });
       }
     }
-    if (message.clean) {
-      destroymode = false;
+    if (message === 'refresh') {
+      destructionMode = false;
       chrome.scripting.executeScript({
         target: { tabId: tab.id },
-        files: ['content2.js'],
+        func: () => location.reload(),
       });
     }
   });

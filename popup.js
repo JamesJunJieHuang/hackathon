@@ -10,8 +10,8 @@ const updateUI = () => {
 };
 
 updateState = () => {
-  chrome.runtime.sendMessage('get-destroymode', (response) => {
-    destroymode = response?.destroymode ?? false;
+  chrome.runtime.sendMessage({ message: 'getstate' }, (response) => {
+    destroymode = response?.state ?? false;
     updateUI();
   });
 };
@@ -19,13 +19,13 @@ updateState = () => {
 function toggleDestroyMode() {
   destroymode = !destroymode;
   updateUI();
-  chrome.runtime.sendMessage({ myPopupIsOpen: true });
+  chrome.runtime.sendMessage({ message: 'togglestate' });
 
   if (destroymode) setTimeout(() => window.close(), 250);
 }
 
 function activateCleanUp() {
-  chrome.runtime.sendMessage({ clean: true });
+  chrome.runtime.sendMessage({ message: 'refresh' });
   setTimeout(() => window.close(), 150);
 }
 
